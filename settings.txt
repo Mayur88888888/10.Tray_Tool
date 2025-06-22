@@ -1,0 +1,6 @@
+# Settings for Tray Tool
+ToolFolder=C:\Tools
+ToolName=My Custom Tray Tool
+Author=Your Name
+TextColor=0,0,0
+BackgroundColor=240,240,240
