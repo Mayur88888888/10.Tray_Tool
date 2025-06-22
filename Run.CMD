@@ -1,1 +1,1 @@
-gcc tray_tool.c -o tray_tool.exe -mwindows -lshlwapi -lshell32 -static
+gcc tray_tool.c -o tray_tool.exe -mwindows -lshlwapi -static
