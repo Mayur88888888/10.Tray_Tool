@@ -1,6 +1,31 @@
-# Settings for Tray Tool
+# Tray Tool Settings
+
 ToolFolder=C:\Tools
-ToolName=My Custom Tray Tool
-Author=Your Name
+ToolName=Created by Mayur88888888
+Author=Your Name Here
+
+# Colors (RGB)
+BackgroundColor=100,110,200
 TextColor=0,0,0
-BackgroundColor=240,240,240
+MenuHoverColor=200,200,255
+MenuDisabledColor=128,128,128
+
+# Icon options
+UseCustomIcon=0
+IconFile=trayicon.ico
+
+# Behavior
+ShowBalloonOnStart=1
+BalloonTitle=Tray Tool Loaded
+BalloonMessage=Right click tray icon to open menu
+
+# Menu Options
+ShowExit=1
+ShowReload=1
+ShowPreferences=1
+ShowAbout=1
+
+# Advanced
+MaxMenuItems=1000
+RecursiveFolders=1
+LogFile=tray_tool.log

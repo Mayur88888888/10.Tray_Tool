@@ -9,6 +9,25 @@
 #define MAX_MENU_ITEMS 1000
 #define SETTINGS_FILE "settings.txt"
 
+
+int UseCustomIcon = 0;
+char IconFile[MAX_PATH] = "trayicon.ico";
+
+int ShowBalloonOnStart = 1;
+char BalloonTitle[128] = "Tray Tool Loaded";
+char BalloonMessage[256] = "Right click tray icon to open menu";
+
+int ShowExit = 1;
+int ShowReload = 1;
+int ShowPreferences = 1;
+int ShowAbout = 1;
+
+int MaxMenuItems = 1000;
+int RecursiveFolders = 1;
+
+char LogFile[MAX_PATH] = "tray_tool.log";
+
+
 char TOOL_FOLDER[MAX_PATH] = "C:\\Tools";
 char TOOL_NAME[128] = "Tray Tool";
 char AUTHOR[128] = "OpenAI User";
@@ -31,20 +50,37 @@ void LoadSettings() {
     while (fgets(line, sizeof(line), fp)) {
         if (line[0] == '#' || strlen(line) < 3) continue;
 
+        // Basic string values
         if (sscanf(line, "ToolFolder=%[^\n]", TOOL_FOLDER)) continue;
         if (sscanf(line, "ToolName=%[^\n]", TOOL_NAME)) continue;
         if (sscanf(line, "Author=%[^\n]", AUTHOR)) continue;
 
+        // Colors (r,g,b)
         int r, g, b;
-        if (sscanf(line, "BackgroundColor=%d,%d,%d", &r, &g, &b)) {
-            BG_COLOR = RGB(r, g, b); continue;
-        }
-        if (sscanf(line, "TextColor=%d,%d,%d", &r, &g, &b)) {
-            TEXT_COLOR = RGB(r, g, b); continue;
-        }
+        if (sscanf(line, "BackgroundColor=%d,%d,%d", &r, &g, &b)) { BG_COLOR = RGB(r,g,b); continue; }
+        if (sscanf(line, "TextColor=%d,%d,%d", &r, &g, &b)) { TEXT_COLOR = RGB(r,g,b); continue; }
+        if (sscanf(line, "MenuHoverColor=%d,%d,%d", &r, &g, &b)) { /* store as needed */ continue; }
+        if (sscanf(line, "MenuDisabledColor=%d,%d,%d", &r, &g, &b)) { /* store as needed */ continue; }
+
+        // Boolean / int values
+        if (sscanf(line, "UseCustomIcon=%d", &UseCustomIcon)) continue;
+        if (sscanf(line, "ShowBalloonOnStart=%d", &ShowBalloonOnStart)) continue;
+        if (sscanf(line, "ShowExit=%d", &ShowExit)) continue;
+        if (sscanf(line, "ShowReload=%d", &ShowReload)) continue;
+        if (sscanf(line, "ShowPreferences=%d", &ShowPreferences)) continue;
+        if (sscanf(line, "ShowAbout=%d", &ShowAbout)) continue;
+        if (sscanf(line, "MaxMenuItems=%d", &MaxMenuItems)) continue;
+        if (sscanf(line, "RecursiveFolders=%d", &RecursiveFolders)) continue;
+
+        // Strings
+        if (sscanf(line, "IconFile=%[^\n]", IconFile)) continue;
+        if (sscanf(line, "BalloonTitle=%[^\n]", BalloonTitle)) continue;
+        if (sscanf(line, "BalloonMessage=%[^\n]", BalloonMessage)) continue;
+        if (sscanf(line, "LogFile=%[^\n]", LogFile)) continue;
     }
     fclose(fp);
 }
+
 
 // --- Tray Icon ---
 void AddTrayIcon(HWND hwnd, const char* tipMessage) {
