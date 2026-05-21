@@ -13,6 +13,6 @@ Tool in C Languange inspired with - https://github.com/guoming0000/BatchRunTrayT
 7. tray_tool.exe is made
 8. Run tray_tool.exe
 
-![image](https://github.com/user-attachments/assets/722faf8b-9593-40fe-9926-741fbe0cc480)
+<img width="218" height="213" alt="image" src="https://github.com/user-attachments/assets/16a2ffea-cd0e-41ea-8c6d-fa703bb207fb" />
 
 9. Updates on the way...
